@@ -1,16 +1,3 @@
----
-title: SOC POMDP Environment
-emoji: 🛡️
-colorFrom: red
-colorTo: pink
-sdk: docker
-pinned: false
-app_port: 8000
-base_path: /web
-tags:
-  - openenv
----
-
 # SOC_POMDP — Autonomous SOC Analyst Environment
 
 A cybersecurity threat-hunting environment where an LLM agent plays the role of a Tier 3 SOC Analyst. The agent must identify and isolate an attacker moving laterally through a procedurally generated corporate network — before the attacker reaches sensitive data or the investigation budget runs out.

@@ -19,10 +19,10 @@ Endpoints:
 
 Usage:
     # Development (with auto-reload):
-    uvicorn server.app:app --reload --host 0.0.0.0 --port 8000
+    uvicorn server.app:app --reload --host 0.0.0.0 --port 7860
 
     # Production:
-    uvicorn server.app:app --host 0.0.0.0 --port 8000 --workers 4
+    uvicorn server.app:app --host 0.0.0.0 --port 7860 --workers 4
 
     # Or run directly:
     python -m server.app
@@ -49,11 +49,11 @@ app = create_app(
     SocAction,
     SocObservation,
     env_name="SOC_POMDP",
-    max_concurrent_envs=1,  # increase this number to allow more concurrent WebSocket sessions
+    max_concurrent_envs=4,  # increase this number to allow more concurrent WebSocket sessions
 )
 
 
-def main(host: str = "0.0.0.0", port: int = 8000):
+def main(host: str = "0.0.0.0", port: int = 7860):
     """
     Entry point for direct execution via uv run or python -m.
 
@@ -64,7 +64,7 @@ def main(host: str = "0.0.0.0", port: int = 8000):
 
     Args:
         host: Host address to bind to (default: "0.0.0.0")
-        port: Port number to listen on (default: 8000)
+        port: Port number to listen on (default: 7860)
 
     For production deployments, consider using uvicorn directly with
     multiple workers:
@@ -79,6 +79,6 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--port", type=int, default=8000)
+    parser.add_argument("--port", type=int, default=7860)
     args = parser.parse_args()
     main(port=args.port)
