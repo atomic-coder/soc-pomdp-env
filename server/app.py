@@ -35,12 +35,9 @@ except Exception as e:  # pragma: no cover
         "openenv is required for the web interface. Install dependencies with '\n    uv sync\n'"
     ) from e
 
-try:
-    from ..models import SocAction, SocObservation
-    from .SOC_POMDP_environment import SocEnvironment
-except ModuleNotFoundError:
-    from models import SocAction, SocObservation
-    from server.SOC_POMDP_environment import SocEnvironment
+
+from models import SocAction, SocObservation
+from server.SOC_POMDP_environment import SocEnvironment
 
 
 # Create the app with web interface and README integration
