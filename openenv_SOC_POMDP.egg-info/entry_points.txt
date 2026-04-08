@@ -1,0 +1,2 @@
+[console_scripts]
+server = SOC_POMDP.server.app:main

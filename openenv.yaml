@@ -1,0 +1,21 @@
+spec_version: 1
+name: SOC_POMDP
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+
+api:
+  action_model: models.SocAction
+  observation_model: models.SocObservation
+
+tasks:
+  - id: easy
+    description: "The Loud Smash & Grab. Ransomware script-kiddies."
+    grader: graders.easy_grader        # ← add these
+  - id: medium
+    description: "The Corporate Breach. Living off the Land tactics."
+    grader: graders.medium_grader      # ← add these
+  - id: hard
+    description: "Advanced Persistent Threat. Nation-state actor."
+    grader: graders.hard_grader        # ← add these
