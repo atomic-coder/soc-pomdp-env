@@ -27,6 +27,10 @@ Usage:
     # Or run directly:
     python -m server.app
 """
+import sys
+import os
+# This ensures that /app/env is always searchable for models.py
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 try:
     from openenv.core.env_server.http_server import create_app
