@@ -29,8 +29,17 @@ Usage:
 """
 import sys
 import os
-# This ensures that /app/env is always searchable for models.py
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# 1. Force the root directory into the search path
+# This makes sure 'models' is always findable
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
+
+# 2. Now do the imports
+from models import SocAction, SocObservation
+from server.SOC_POMDP_environment import SocEnvironment
 
 try:
     from openenv.core.env_server.http_server import create_app
@@ -38,10 +47,6 @@ except Exception as e:  # pragma: no cover
     raise ImportError(
         "openenv is required for the web interface. Install dependencies with '\n    uv sync\n'"
     ) from e
-
-
-from models import SocAction, SocObservation
-from server.SOC_POMDP_environment import SocEnvironment
 
 
 # Create the app with web interface and README integration

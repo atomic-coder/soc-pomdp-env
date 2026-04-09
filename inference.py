@@ -127,7 +127,8 @@ def call_llm(client: OpenAI, messages: list, fallback_node: Optional[str] = None
 
 async def run_episode(task: str, llm_client: OpenAI) -> None:
     env = await SocEnvClient.from_docker_image(
-        os.getenv("LOCAL_IMAGE_NAME", "soc-copilot:latest")
+        os.getenv("LOCAL_IMAGE_NAME", "soc_pomdp:latest"),
+        container_port=7860
     )
 
     rewards: List[float] = []
