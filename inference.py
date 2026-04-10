@@ -126,7 +126,7 @@ def call_llm(client: OpenAI, messages: list, fallback_node: Optional[str] = None
 # ── Episode runner ────────────────────────────────────────────────────────────
 
 async def run_episode(task: str, llm_client: OpenAI) -> None:
-    env = await SocEnvClient(base_url=ENV_URL)
+    env = SocEnvClient(base_url=ENV_URL)
 
     rewards: List[float] = []
     history: List[str]   = []
