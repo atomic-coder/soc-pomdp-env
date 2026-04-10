@@ -1,5 +1,5 @@
 spec_version: 1
-name: SOC_POMDP
+name: soc-pomdp-env
 type: space
 runtime: fastapi
 app: server.app:app

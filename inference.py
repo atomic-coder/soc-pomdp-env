@@ -29,11 +29,11 @@ from client import SocEnvClient
 from models import SocAction
 from graders import easy_grader, medium_grader, hard_grader
 
-ENV_URL      = os.environ.get("ENV_URL", "https://your-space.hf.space")
+ENV_URL      = os.environ.get("ENV_URL", "https://atomic-coder-soc-pomdp-env.hf.space")
 API_KEY      = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
 API_BASE_URL = os.environ.get("API_BASE_URL", "https://router.huggingface.co/v1")
 MODEL_NAME   = os.environ.get("MODEL_NAME", "Qwen/Qwen2.5-72B-Instruct")
-BENCHMARK    = "SOC_POMDP"
+BENCHMARK    = "soc-pomdp-env"
 
 MAX_STEPS             = 25
 TEMPERATURE           = 0.2
@@ -126,10 +126,7 @@ def call_llm(client: OpenAI, messages: list, fallback_node: Optional[str] = None
 # ── Episode runner ────────────────────────────────────────────────────────────
 
 async def run_episode(task: str, llm_client: OpenAI) -> None:
-    env = await SocEnvClient.from_docker_image(
-        os.getenv("LOCAL_IMAGE_NAME", "soc_pomdp:latest"),
-        container_port=7860
-    )
+    env = await SocEnvClient(base_url=ENV_URL)
 
     rewards: List[float] = []
     history: List[str]   = []
